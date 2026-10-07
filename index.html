@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PATAPEMSHOP</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;color:#fff;
+ background:
+ radial-gradient(circle at 15% 10%,#008cff55,transparent 30%),
+ radial-gradient(circle at 90% 30%,#00eaff38,transparent 30%),
+ linear-gradient(145deg,#020817,#06264a,#010914);
+ min-height:100vh;overflow-x:hidden
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(#ffffff03 1px,transparent 1px),linear-gradient(90deg,#ffffff03 1px,transparent 1px);background-size:35px 35px}
+header{
+ position:sticky;top:12px;z-index:50;margin:12px auto;max-width:1250px;
+ display:flex;justify-content:space-between;align-items:center;padding:14px 20px;
+ background:#ffffff0d;border:1px solid #67eaff55;border-radius:22px;
+ backdrop-filter:blur(22px);box-shadow:0 0 35px #00cfff18
+}
+.logo{font-size:22px;font-weight:900;text-decoration:none;color:#fff;text-shadow:0 0 20px #00d9ff}
+.logo span{color:#36ddff}
+nav{display:flex;gap:18px}nav a{color:#dffaff;text-decoration:none;font-size:14px}
+main{max-width:1250px;margin:auto;padding:15px}
+.glass{
+ background:linear-gradient(135deg,#ffffff16,#ffffff07);
+ border:1px solid #6cecff42;border-radius:28px;
+ box-shadow:inset 0 1px #ffffff20,0 20px 60px #0009,0 0 35px #00cfff14;
+ backdrop-filter:blur(20px)
+}
+.hero{margin-top:18px;padding:28px;display:grid;grid-template-columns:1fr 1.15fr;gap:25px;align-items:center}
+.badge{display:inline-block;color:#69eaff;font-weight:bold;letter-spacing:2px;font-size:12px}
+h1{font-size:clamp(45px,7vw,82px);line-height:.95;margin:15px 0}
+h1 span{color:#28dcff;text-shadow:0 0 25px #00cfff}
+p{color:#b9dce8;line-height:1.7}
+.hero img{width:100%;border-radius:22px;display:block;border:1px solid #6cecff55}
+.btn{
+ display:inline-block;border:1px solid #6cecff55;color:white;background:#ffffff0b;
+ padding:12px 18px;border-radius:15px;text-decoration:none;font-weight:bold;cursor:pointer
+}
+.btn.primary{background:linear-gradient(135deg,#08baff,#146fff)}
+.actions{display:flex;gap:10px;margin-top:24px}
+section{margin-top:55px}
+.title{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+h2{font-size:34px;margin:5px 0}.eyebrow{color:#5be4ff;font-size:12px;font-weight:bold;letter-spacing:2px}
+.search{padding:8px 14px}.search input,.codebox input{
+ background:transparent;border:0;outline:0;color:#fff;padding:10px;width:220px
+}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{padding:12px;overflow:hidden}
+.card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:18px}
+.card h3{font-size:16px;min-height:45px}.price{font-size:26px;color:#65eaff;font-weight:900;margin-bottom:12px}
+.service,.payment,.checker{padding:25px}
+.service{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+input[type=range]{width:100%;accent-color:#20d7ff}
+.big{font-size:48px;font-weight:900;color:#63eaff}
+.paygrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.paycard{padding:20px;border:1px solid #64eaff33;border-radius:20px;background:#ffffff08}
+.codebox{display:flex;gap:10px;padding:8px;border:1px solid #65eaff33;border-radius:18px}
+.result{margin-top:15px;padding:18px;border-radius:18px}
+.good{border:1px solid #00e5a055;background:#00e5a018}.bad{border:1px solid #ff547055;background:#ff547018}
+footer{margin:55px 0 20px;padding:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ripple,.scan{
+ position:fixed;left:0;top:0;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;border-radius:50%
+}
+.ripple{width:20px;height:20px;border:2px solid #72efff;box-shadow:0 0 20px #00dfff;animation:ripple .8s ease-out forwards}
+.scan{width:20px;height:20px;border:2px solid #a5f7ff;box-shadow:0 0 25px #00eaff;animation:scan .9s ease-out forwards}
+.scan:after{content:"";position:absolute;inset:8px;border:1px dashed #fff;border-radius:50%}
+@keyframes ripple{to{width:190px;height:190px;opacity:0}}
+@keyframes scan{to{width:160px;height:160px;opacity:0}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.service{grid-template-columns:1fr}}
+@media(max-width:550px){nav{display:none}.grid{grid-template-columns:1fr 1fr}.hero{padding:18px}main{padding:9px}.paygrid{grid-template-columns:1fr}.codebox{flex-wrap:wrap}.codebox input{width:100%}}
+</style>
+</head>
+
+<body>
+
+<header>
+ <a class="logo" href="#"><span>✦</span> PATAPEMSHOP</a>
+ <nav>
+  <a href="#products">สินค้า</a>
+  <a href="#edit">ตัดต่อ</a>
+  <a href="#payment">เติมเงิน</a>
+  <a href="#check">เช็คโค้ด</a>
+ </nav>
+</header>
+
+<main>
+
+<section class="glass hero">
+ <div>
+  <span class="badge">PATAPEMSHOP • ROBLOX SHOP</span>
+  <h1>ของดี<br><span>ราคาโดน</span></h1>
+  <p>ร้านค้าออนไลน์ดีไซน์กระจกสีฟ้า พร้อมเอฟเฟกต์สแกนนิ้วเมื่อแตะหน้าจอ</p>
+  <div class="actions">
+   <a class="btn primary" href="#products">ดูสินค้า</a>
+   <a class="btn" href="#check">เช็คโค้ด</a>
+  </div>
+ </div>
+ <div><img src="patapemshop-banner.png" alt="PATAPEMSHOP"></div>
+</section>
+
+<section id="products">
+ <div class="title">
+  <div><span class="eyebrow">SHOP</span><h2>สินค้าทั้งหมด</h2></div>
+  <div class="glass search"><input id="search" placeholder="ค้นหาสินค้า..."> 🔎</div>
+ </div>
+ <div id="productsGrid" class="grid"></div>
+</section>
+
+<section id="edit" class="glass service">
+ <div>
+  <span class="eyebrow">VIDEO EDITING</span>
+  <h2>รับตัดต่อ</h2>
+  <p>เริ่มต้น 10 ต่อนาที เลือกได้ตั้งแต่ 1–60 นาที</p>
+ </div>
+ <div>
+  <input id="minutes" type="range" min="1" max="60" value="5">
+  <p>เวลาที่เลือก: <b id="minuteText">5 นาที</b></p>
+  <div class="big"><span id="editPrice">50</span></div>
+  <button class="btn primary" onclick="createEditOrder()">สร้างออเดอร์</button>
+ </div>
+</section>
+
+<section id="payment" class="glass payment">
+ <span class="eyebrow">PAYMENT</span>
+ <h2>เติมเงิน / ชำระเงิน</h2>
+ <div class="paygrid">
+  <div class="paycard"><h3>🏦 โอนธนาคาร</h3><p>แนบสลิปให้ร้านตรวจสอบหลังจากสั่งซื้อ</p></div>
+  <div class="paycard"><h3>🧧 ซองอั่งเปา</h3><p>ส่งหลักฐานการชำระเงินให้ร้านตรวจสอบ</p></div>
+ </div>
+ <p>ระบบ HTML นี้เป็นหน้าร้านตัวอย่าง การตรวจสลิปจริงควรเชื่อม backend ของร้าน</p>
+</section>
+
+<section id="check" class="glass checker">
+ <span class="eyebrow">CODE CHECK</span>
+ <h2>เช็คโค้ดสินค้า</h2>
+ <p>ใส่โค้ดที่ได้รับเพื่อตรวจสอบว่าสังกัดสินค้าอะไรและถูกใช้แล้วหรือยัง</p>
+ <div class="codebox">
+  <input id="codeInput" placeholder="patapem-XXXXXXXX-XXXXXXX_">
+  <button class="btn primary" onclick="checkCode()">ตรวจสอบ</button>
+ </div>
+ <div id="result"></div>
+</section>
+
+<footer class="glass">
+ <b>PATAPEMSHOP</b>
+ <span>TikTok: @robloxuksupplier</span>
+ <span>ไม่บิด +1 • บิด -1</span>
+</footer>
+
+</main>
+
+<script>
+const products=[
+["Gift Card 230 robux + Icarus wing (มีเอฟเฟค)",145,"p01.png"],
+["Flaming Hot Chip Head",300,"p02.png"],
+["Virtual Nomad Bundle",54,"p03.png"],
+["Freaky Fly",54,"p04.png"],
+["Evil Clown Mask",199,"p05.png"],
+["Knife Crown",54,"p06.png"],
+["Hungry Orca",54,"p07.png"],
+["Raven Hunter Hood",54,"p08.png"],
+["Mardi Gras Steampunk Mask",199,"p09.png"],
+["Clutch Missile Launcher",40,"p10.png"],
+["Delinquent Demon",400,"p11.png"]
+];
+
+function render(){
+ const q=document.getElementById("search").value.toLowerCase();
+ document.getElementById("productsGrid").innerHTML=products
+ .filter(p=>p[0].toLowerCase().includes(q))
+ .map((p,i)=>`
+ <article class="glass card">
+   <img src="${p[2]}" alt="${p[0]}">
+   <h3>${p[0]}</h3>
+   <div class="price">${p[1]}</div>
+   <button class="btn primary" onclick="buy('${p[0]}',${p[1]})">สั่งซื้อ</button>
+ </article>`).join("");
+}
+document.getElementById("search").addEventListener("input",render);
+
+function buy(name,price){
+ const order="PEM-"+Date.now().toString(36).toUpperCase();
+ alert("สร้างออเดอร์แล้ว\\n\\nสินค้า: "+name+"\\nราคา: "+price+"\\nหมายเลขสั่งซื้อ: "+order);
+}
+
+function createEditOrder(){
+ const m=+document.getElementById("minutes").value;
+ const order="PEM-"+Date.now().toString(36).toUpperCase();
+ alert("สร้างออเดอร์แล้ว\\nตัดต่อ "+m+" นาที\\nราคา: "+(m*10)+"\\nหมายเลข: "+order);
+}
+
+document.getElementById("minutes").oninput=e=>{
+ document.getElementById("minuteText").textContent=e.target.value+" นาที";
+ document.getElementById("editPrice").textContent=e.target.value*10;
+};
+
+function checkCode(){
+ const code=document.getElementById("codeInput").value.trim();
+ const result=document.getElementById("result");
+ if(!code){
+  result.innerHTML='<div class="result bad">กรุณาใส่โค้ดก่อน</div>';return;
+ }
+ if(!/^patapem-[A-Za-z0-9]+-[A-Za-z0-9]+_$/.test(code)){
+  result.innerHTML='<div class="result bad">❌ รูปแบบโค้ดไม่ถูกต้อง</div>';return;
+ }
+ result.innerHTML='<div class="result good">✅ รูปแบบโค้ดถูกต้อง<br>หมายเหตุ: การตรวจว่าโค้ดมีอยู่จริงและใช้แล้วหรือยัง ต้องเชื่อมฐานข้อมูลของร้าน</div>';
+}
+
+document.addEventListener("pointerdown",e=>{
+ const r=document.createElement("div");
+ r.className="ripple";r.style.left=e.clientX+"px";r.style.top=e.clientY+"px";
+ document.body.appendChild(r);setTimeout(()=>r.remove(),850);
+ const s=document.createElement("div");
+ s.className="scan";s.style.left=e.clientX+"px";s.style.top=e.clientY+"px";
+ document.body.appendChild(s);setTimeout(()=>s.remove(),950);
+});
+
+render();
+</script>
+</body>
+</html>
